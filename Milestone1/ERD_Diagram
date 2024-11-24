@@ -1,0 +1,47 @@
+erDiagram
+
+    Issue {
+        string url
+        string creator
+        list labels
+        State state
+        list assignees
+        string title
+        string text
+        int number
+        datetime created_date
+        datetime updated_date
+        string timeline_url
+    }
+    
+    Event {
+        string event_type
+        string author
+        datetime event_date
+        string label
+        string comment
+    }
+    Creator {
+        string username
+    }
+    
+    State {
+        enum state_value
+    }
+    
+    
+    Label {
+        string label_name
+    }
+
+    Assignee {
+        string username
+    }
+
+%% Relationships
+    Issue ||--o{ Event : "has"
+    Creator ||--o{ Issue: "create"
+    Issue ||--o{ Label : "has"
+    Issue ||--|| State : "has state"
+    Issue |o--o| Assignee: "assigned"
+    Event ||--o| Label: "has"

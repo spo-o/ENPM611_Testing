@@ -1,0 +1,96 @@
+classDiagram
+    class Config {
+        -_config
+        +_init_config(path=None)
+        +_get_default_path()
+        +get_parameter(parameter_name, default=None)
+        +convert_to_typed_value(value)
+        +set_parameter(name, value)
+        +overwrite_from_args(args)
+    }
+
+    class DataLoader {
+        -data_path: str
+        -_ISSUES: List[Issue]
+        +__init__()
+        +get_issues() _ISSUES
+        -_load() _ISSUES
+    }
+
+    class ExampleAnalysis {
+        -USER: str
+        +__init__()
+        +run()
+    }
+
+    class Issue {
+        -url: str
+        -creator: str
+        -labels: List[str]
+        -state: State
+        -assignees: List[str]
+        -title: str
+        -text: str
+        -number: int
+        -created_date: datetime
+        -updated_date: datetime
+        -timeline_url: str
+        -events: List[Event]
+        +__init__(jobj: Any = None)
+        +from_json(jobj: Any)
+    }
+
+    class Event {
+        -event_type: str
+        -author: str
+        -event_date: datetime
+        -label: str
+        -comment: str
+        +__init__(jobj: Any)
+        +from_json(jobj: Any)
+    }
+
+    class State {
+        <<enumeration>>
+        +open
+        +closed
+    }
+
+    class run{
+
+        +parse_args()
+    }
+
+    class Analysis_1{
+        +__init__()
+        +run()
+
+    }
+
+    class Analysis_2{
+        +__init__()
+        +run()
+        
+    }
+
+    class Analysis_3{
+        +__init__()
+        +run()
+        
+    }
+
+    %% Relationships
+    DataLoader ..> Config : uses
+    ExampleAnalysis ..> Config : uses
+    ExampleAnalysis ..> DataLoader : uses
+    ExampleAnalysis ..> Issue : uses
+    Issue *-- Event : contains
+    Issue ..> State : uses
+    run ..> ExampleAnalysis: uses
+    run ..> Config: uses
+    run ..> Analysis_1: uses
+    run ..> Analysis_2: uses
+    run ..> Analysis_3: uses
+    Analysis_1 ..> Issue: uses
+    Analysis_2 ..> Issue: uses
+    Analysis_3 ..> Issue: uses
