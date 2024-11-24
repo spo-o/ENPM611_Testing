@@ -41,9 +41,9 @@ def parse_args():
     # Optional parameter for analyses focusing on a specific label
     ap.add_argument('--label', '-l', type=str, required=False,
                     help='Optional parameter for analyses focusing on a specific label')
-    ap.add_argument(
+    '''ap.add_argument(
         'file_path', 
-        type=str, default='data/poetry_issues.json', 
+        type=str, default='poetry_issues.json', 
         help='Path to the JSON file containing issues.'
         )
     ap.add_argument(
@@ -61,7 +61,7 @@ def parse_args():
         '--end_date', 
         type=str,
         help='End date in ISO format (YYYY-MM-DD).'
-        )
+        )'''
     
     return ap.parse_args()
 
